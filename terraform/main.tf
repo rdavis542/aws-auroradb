@@ -25,12 +25,3 @@ resource "aws_rds_cluster" "aurora_postgres" {
   }
 }
 
-resource "aws_rds_cluster_subnet_group" "aurora_subnet_group" {
-  name       = "aurora-subnet-group"
-  subnet_ids = [data.aws_subnet.subnet_private_a.id, data.aws_subnet.subnet_private_b.id] # Replace with your VPC subnets
-
-  tags = {
-    Name = "aurora-subnet-group"
-  }
-}
-
