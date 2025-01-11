@@ -1,7 +1,7 @@
 
 resource "aws_security_group" "postgres_access" {
 
-  vpc_id      = vpc.main.id
+  vpc_id      = data.aws_vpc.selected.id
   name        = "postgres_access"
   description = "Allow pgsql Inbound"
 
@@ -11,7 +11,7 @@ resource "aws_security_group" "postgres_access" {
     from_port   = 5432
     to_port     = 5432
     protocol    = "tcp"
-    cidr_blocks = [aws_subnet.db-public-subnet_a.cidr_block]
+    cidr_blocks = [data.aws_subnet.private-subnet-a.cidr_block]
   }
 
     egress {
