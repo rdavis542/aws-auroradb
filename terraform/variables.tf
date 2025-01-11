@@ -3,6 +3,20 @@ variable "region" {
   description = "region you want to use"
 }
 
+# Define variables for snapshot ID and database details
+variable "db_snapshot_id" {
+  description = "The snapshot ID to restore the Aurora cluster from"
+}
+
+variable "cluster_identifier" {
+  description = "The identifier for the Aurora cluster"
+}
+
+variable "global_cluster_identifier" {
+  description = "The identifier for the Aurora global cluster"
+}
+
+
 variable "subnet_private_a" {
 
   type        = string
@@ -78,9 +92,21 @@ variable "azC" {
 variable "default_tags" {
   description = "Default tags too apply to all resources"
   default = {
-    "Environment" = "Development"
+    "Environment"    = "Development"
     "Infrastructure" = "VPC"
-    "REPO" = "aws-vpc"
+    "REPO"           = "aws-ec2-base"
   }
-  
+
+}
+variable "volume_size" {
+
+  type    = string
+  default = "20"
+
+}
+
+variable "instance_type" {
+
+  type    = string
+  default = "t2.micro"
 }

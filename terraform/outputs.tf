@@ -1,12 +1,12 @@
-output "vpc_arn" {
+output "db_arn" {
 
-  value = aws_vpc.main.arn
+  value = aws_db.main.arn
 
 }
 
-output "vpc_owner_id" {
+output "db_owner_id" {
 
-  value = aws_vpc.main.owner_id
+  value = aws_db.main.owner_id
 
 }
 

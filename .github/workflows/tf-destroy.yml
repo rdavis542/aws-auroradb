@@ -1,4 +1,4 @@
-name: "aws-vpc-destroy"
+name: "aws-db-destroy"
 
 on:
 #  push:
@@ -9,8 +9,8 @@ env:
   AWS_REGION: us-east-1   
 
 jobs:
-  tf-vpc-destrpu:
-    name:  "Terraform VPC Destroy"
+  tf-db-destrpu:
+    name:  "Terraform DB Destroy"
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -34,5 +34,5 @@ jobs:
     - name: Initialize TF
       run: terraform init
 
-    - name: VPC Destroy
-      run: terraform destroy -auto-approve --var-file=./terraform-vpc.tfvars
+    - name: DB Destroy
+      run: terraform destroy -auto-approve --var-file=./terraform-db.tfvars

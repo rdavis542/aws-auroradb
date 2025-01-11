@@ -1,4 +1,4 @@
-# AWS-VPC
+# AWS-AURORADB
 
 ## Table of Contents
 
@@ -9,12 +9,12 @@
 
 ## About <a name = "about"></a>
 
-Simple Terraform project to use GitHub Actions to build a base VPC with routes, security groups, and subnets.
+Simple Terraform project to use GitHub Actions to build an AuroraDB.
 
 ## Getting Started <a name = "getting_started"></a>
 
 - git clone this repo to directory of your choice
-- edit terraform-vpc.tfvars to values of your choice
+- edit terraform-db.tfvars to values of your choice
 
 ### Prerequisites
 

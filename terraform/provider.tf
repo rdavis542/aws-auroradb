@@ -21,3 +21,9 @@ provider "aws" {
 
 }
 
+# Secondary region setup (replica cluster)
+provider "aws" {
+  alias  = "secondary"
+  region = "us-west-2" # Secondary region
+}
+

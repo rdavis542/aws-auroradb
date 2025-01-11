@@ -1,4 +1,4 @@
-name: "aws-vpc-build"
+name: "aws-db-build"
 
 on:
   #push:
@@ -10,8 +10,8 @@ env:
   AWS_REGION: us-east-1   
 
 jobs:
-  tf-vpc-plan:
-    name:  "Terraform VPC Plan"
+  tf-db-plan:
+    name:  "Terraform DB Plan"
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -42,11 +42,11 @@ jobs:
       run: terraform validate -no-color
 
     - name: TF Plan
-      run: terraform plan --var-file=./terraform-vpc.tfvars -no-color -out tf.plan
+      run: terraform plan --var-file=./terraform-db.tfvars -no-color -out tf.plan
 
-  tf-vpc-apply:
-        name:  "Terraform VPC Apply"
-        needs: tf-vpc-plan
+  tf-db-apply:
+        name:  "Terraform DB Apply"
+        needs: tf-db-plan
         runs-on: ubuntu-latest
         defaults:
           run:
@@ -77,4 +77,4 @@ jobs:
           run: terraform validate -no-color
     
         - name: TF Apply
-          run: terraform apply -auto-approve --var-file=./terraform-vpc.tfvars
+          run: terraform apply -auto-approve --var-file=./terraform-db.tfvars
