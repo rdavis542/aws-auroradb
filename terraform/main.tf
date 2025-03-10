@@ -1,27 +1,18 @@
-resource "aws_rds_cluster" "aurora_postgres" {
-  cluster_identifier      = "aurora-postgres-serverless"
-  engine                  = "aurora-postgresql"
-  engine_version          = "13.6" # Replace with the desired Aurora PostgreSQL version
-  master_username         = "admin" # Adjust as needed
-  master_password         = "yourpassword" # Use a secure method to manage secrets
-  database_name           = "mydatabase"
-  storage_encrypted       = true
-  backup_retention_period = 7
-  preferred_backup_window = "07:00-09:00"
+resource "aws_db_instance" "free_tier_db" {
+  identifier             = "my-free-tier-db"
+  allocated_storage      = 20  # Minimum required for Free Tier
+  storage_type           = "gp2"
+  engine                = "postgres"  # Change to "postgres" for PostgreSQL
+  engine_version        = "17.3"    # Change to PostgreSQL version if needed
+  instance_class        = "db.t3.micro"  # Free Tier eligible
+  username             = "admin"
+  password             = "YourSecurePassword123!"  # Use sensitive variables in production!
+  #parameter_group_name = "default.mysql8.0"  # Change to default.postgresxx for PostgreSQL
+  publicly_accessible  = false  # Change to true if you need external access
+  skip_final_snapshot  = true   # Avoid final snapshot charges
+  backup_retention_period = 7   # Retain automated backups for 7 days
 
-  # Serverless configuration
-  engine_mode = "serverless"
-
-  scaling_configuration {
-    auto_pause               = true        # Enable automatic pause
-    min_capacity             = 2           # Minimum ACU (Aurora Capacity Units)
-    max_capacity             = 8           # Maximum ACU
-    seconds_until_auto_pause = 300         # Auto-pause after 5 minutes
-  }
-
-  tags = {
-    Name        = "aurora-postgres-serverless"
-    Environment = "production"
-  }
+  vpc_security_group_ids = [aws_security_group.postgres_access.id]
 }
+
 
