@@ -35,4 +35,4 @@ jobs:
       run: terraform init
 
     - name: DB Destroy
-      run: terraform destroy -auto-approve --var-file=./terraform-db.tfvars
+      run: terraform destroy -auto-approve

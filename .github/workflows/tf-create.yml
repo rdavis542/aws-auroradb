@@ -42,7 +42,7 @@ jobs:
       run: terraform validate -no-color
 
     - name: TF Plan
-      run: terraform plan --var-file=./terraform-db.tfvars -no-color -out tf.plan
+      run: terraform plan -out tf.plan
 
   tf-db-apply:
         name:  "Terraform DB Apply"
@@ -77,4 +77,4 @@ jobs:
           run: terraform validate -no-color
     
         - name: TF Apply
-          run: terraform apply -auto-approve --var-file=./terraform-db.tfvars
+          run: terraform apply -auto-approve
