@@ -2,7 +2,7 @@
 resource "aws_security_group" "postgres_access" {
 
   vpc_id      = data.aws_vpc.selected.id
-  name        = "postgres_access"
+  name        = "postgres_access_auroradb"
   description = "Allow pgsql Inbound"
 
 
