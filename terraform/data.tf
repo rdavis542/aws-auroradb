@@ -5,20 +5,6 @@ data "aws_vpc" "selected" {
   }
 }
 
-data "aws_subnet" "public-subnet-a" {
-  filter {
-    name   = "tag:Name"
-    values = ["public-subnet-a"]
-  }
-}
-
-data "aws_subnet" "public-subnet-b" {
-  filter {
-    name   = "tag:Name"
-    values = ["public-subnet-b"]
-  }
-}
-
 data "aws_subnet" "private-subnet-a" {
   filter {
     name   = "tag:Name"

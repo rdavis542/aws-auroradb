@@ -1,20 +1,21 @@
-
 resource "aws_security_group" "postgres_access" {
-
+  name        = "aurora-postgres-access"
+  description = "Allow PostgreSQL inbound to Aurora cluster from private subnets"
   vpc_id      = data.aws_vpc.selected.id
-  name        = "postgres_access_auroradb"
-  description = "Allow pgsql Inbound"
-
 
   ingress {
-    description = "pgsql access"
+    description = "PostgreSQL from private subnets"
     from_port   = 5432
     to_port     = 5432
     protocol    = "tcp"
-    cidr_blocks = [data.aws_subnet.private-subnet-a.cidr_block]
+    cidr_blocks = [
+      data.aws_subnet.private-subnet-a.cidr_block,
+      data.aws_subnet.private-subnet-b.cidr_block,
+    ]
   }
 
-    egress {
+  egress {
+    description = "Allow all outbound"
     from_port   = 0
     to_port     = 0
     protocol    = "-1"
@@ -22,7 +23,7 @@ resource "aws_security_group" "postgres_access" {
   }
 
   tags = {
-    Name = "pgsql_access"
+    Name = "aurora-postgres-access"
+    Tier = "database"
   }
-
 }

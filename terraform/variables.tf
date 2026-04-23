@@ -1,43 +1,41 @@
 variable "region" {
   type        = string
-  description = "region you want to use"
-  default = "us-east-1"
+  description = "AWS region to deploy resources"
+  default     = "us-east-2"
 }
 
-# Define variables for snapshot ID and database details
-variable "db_snapshot_id" {
-  description = "The snapshot ID to restore the Aurora cluster from"
-  default = ""
+variable "db_name" {
+  type        = string
+  description = "Name of the initial database to create"
+  default     = "appdb"
 }
 
-variable "cluster_identifier" {
-  description = "The identifier for the Aurora cluster"
-  default = ""
+variable "db_username" {
+  type        = string
+  description = "Master username for the RDS instance"
+  default     = "postgres"
 }
 
-variable "global_cluster_identifier" {
-  description = "The identifier for the Aurora global cluster"
-  default = ""
+variable "db_password" {
+  type        = string
+  description = "Master password for the RDS instance"
+  sensitive   = true
 }
 
-variable "default_tags" {
-  description = "Default tags too apply to all resources"
-  default = {
-    "Environment"    = "Development"
-    "Infrastructure" = "rds_instance"
-    "REPO"           = "aws-auroradb"
-  }
-
-}
-variable "volume_size" {
-
-  type    = string
-  default = "20"
-
+variable "instance_class" {
+  type        = string
+  description = "RDS instance class"
+  default     = "db.t3.micro"
 }
 
-variable "instance_type" {
+variable "allocated_storage" {
+  type        = number
+  description = "Allocated storage in GB"
+  default     = 20
+}
 
-  type    = string
-  default = "t2.micro"
+variable "backup_retention_period" {
+  type        = number
+  description = "Number of days to retain automated backups"
+  default     = 7
 }

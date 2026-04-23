@@ -7,23 +7,25 @@ terraform {
     }
   }
   backend "s3" {
-    bucket = "tfstategit"
-    key    = "auroradb.terraform.tfstate"
-    region = "us-east-1"
+    bucket  = "tf-state-replication-source-350726165848"
+    key     = "terraform-auroradb.tfstate"
+    region  = "us-east-2"
     encrypt = true
   }
 }
 
-
 provider "aws" {
-
   region = var.region
 
+  default_tags {
+    tags = {
+      Environment = "development"
+      Project     = "aws-auroradb"
+      ManagedBy   = "Terraform"
+      Repository  = "aws-auroradb"
+      Owner       = "ryan_davis542@outlook.com"
+      CostCenter  = "Personal"
+      Region      = var.region
+    }
+  }
 }
-
-# Secondary region setup (replica cluster)
-provider "aws" {
-  alias  = "secondary"
-  region = "us-west-2" # Secondary region
-}
-
