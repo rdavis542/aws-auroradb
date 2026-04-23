@@ -1,7 +1,7 @@
 data "aws_vpc" "selected" {
   filter {
     name   = "tag:Name"
-    values = ["vpc-east-1"]
+    values = ["vpc-east-2"]
   }
 }
 
